@@ -1,6 +1,6 @@
 # Node-API-Agenda
 
-##penser mettre des ids car on peut récupérer id dans route en param
+penser mettre des ids car on peut récupérer id dans route en param
 
 #Middleware : 
 - session (voir td 1)
@@ -11,4 +11,6 @@
 -  route supprimer todo (id),
 - list todo (offset : a partir de quel article je veux, size : cb j'en veux) : j'ai une liste de 8 elements dans liste et je les veux 4 par 4 : premier 0, 4 ensuite 4, 4 pour deuxieme page ect
 
-##penser utiliser postman avec bodyparser
+La route va juste rediriger vers le bon module
+
+penser utiliser postman avec bodyparser
