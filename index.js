@@ -5,36 +5,51 @@ var addTodo = require('./modules/add.js');
 var deleteTodo = require('./modules/delete.js');
 var listTodo = require('./modules/list.js');
 
-    /* 
-    * @route / accueil
-    */
-    app.get('/', function(req, res){
-        res.send('Hello world !');
-    });
+var bodyParser = require('body-parser');
+var urlEncodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use(session({ secret: 'mysecrettoken'}));
+
+/*
+* Si le json des Todos n'est pas initialisé alors on le crée
+*/
+app.use(function (req, res, next) {
+    if (!req.session.todosList) {
+        var todos = {
+            "todo": [
+        ]};
+        req.session.todosList = todos;
+    }
+    next();
+});
 
     /* 
-    * @route /list permet de lister mes Todos
+    * @route / accueil, liste les todos
     */
-    app.get('/list', function(req, res){
-        res.send('Bien');
+    app.get('/', function(req, res){
+        console.log(req.session.todosList);
+        //res.send(req.session.todosList);
+        res.send('Bienvenue');          
     });
 
     /* 
     * @route /add permet d'ajouter des Todos
     */
-    app.post('/add', function(req, res){
-        res.send('Hello world !');
+    app.post('/add', urlEncodedParser, function(req, res){
+        console.log(req.body);
+        res.send('Todo ajoutée');
     });
 
     /* 
-    * @route /delete permet de supprimer des Todos
+    * @route /delete/:id permet de supprimer une Todos d'id donnée
     */
-    app.get('/delete', function(req, res){
-        res.send('Hello world !');
+    app.get('/delete/:id', function(req, res){
+        res.send('Todo supprimée :(');
     });
 
 
 
 app.listen(3000, function(){
+    console.log(session.todosList);
     console.log('listening on *:3000');
 });

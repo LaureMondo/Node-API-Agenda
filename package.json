@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LaureMondo/Node-API-Agenda#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-session": "^1.15.6"
   }
 }
